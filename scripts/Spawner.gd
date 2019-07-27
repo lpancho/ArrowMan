@@ -13,6 +13,7 @@ var pixel_bounds = 30
 var max_view_x = 0
 var max_view_y = 0
 
+
 # List of fruits
 var fruits_scn = [
 	"res://scenes/fruits/Apple.tscn",
