@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/Stage.gd" type="Script" id=1]
+[ext_resource path="res://assets/green_background.png" type="Texture" id=2]
+[ext_resource path="res://scenes/gui/ChallengePanel.tscn" type="PackedScene" id=3]
+
+[node name="Stage" type="Node2D"]
+script = ExtResource( 1 )
+environment = "DEV"
+
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Enemy_Container" type="Node" parent="."]
+
+[node name="ChallengePanel" parent="." instance=ExtResource( 3 )]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="TestContainer" type="VBoxContainer" parent="."]
+editor/display_folded = true
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="VBoxContainer" type="HBoxContainer" parent="TestContainer"]
+margin_right = 139.0
+margin_bottom = 20.0
+
+[node name="Generate" type="Button" parent="TestContainer/VBoxContainer"]
+margin_right = 71.0
+margin_bottom = 20.0
+text = "Generate"
+
+[node name="OptionButton" type="OptionButton" parent="TestContainer/VBoxContainer"]
+margin_left = 75.0
+margin_right = 139.0
+margin_bottom = 20.0
+text = "List"
+align = 1
+
+[node name="Clear" type="Button" parent="TestContainer"]
+margin_top = 24.0
+margin_right = 139.0
+margin_bottom = 44.0
+text = "Clear"
+[connection signal="start_game" from="ChallengePanel" to="." method="_on_ChallengePanel_start_game"]
+[connection signal="button_up" from="TestContainer/VBoxContainer/Generate" to="." method="_on_Generate_button_up"]
+[connection signal="button_up" from="TestContainer/Clear" to="." method="_on_Clear_button_up"]
