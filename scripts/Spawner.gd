@@ -1,15 +1,19 @@
 extends Position2D
 
+# Spawner positions
 enum positions {top, bottom, right}
 export var current_position = positions.right
 
+# Movement of spawner
 var direction = 1
 var movement = 1
-const half_size = 20
+var pixel_bounds = 30
 
+# Screen view
 var max_view_x = 0
 var max_view_y = 0
 
+# List of fruits
 var fruits_scn = [
 	"res://scenes/fruits/Apple.tscn",
 	"res://scenes/fruits/Banana.tscn",
@@ -27,16 +31,16 @@ func _ready():
 	
 func _process(delta):
 	if current_position == positions.right:
-		if position.y + half_size + movement > max_view_y: 
+		if position.y + pixel_bounds + movement > max_view_y: 
 			direction = -1
-		elif position.y - half_size - movement < 0:
+		elif position.y - pixel_bounds - movement < 0:
 			direction = 1
 			
 		position.y = position.y + (movement * direction)
 	elif current_position == positions.top || current_position == positions.bottom:
-		if position.x + half_size + movement > max_view_x: 
+		if position.x + pixel_bounds + movement > max_view_x: 
 			direction = -1
-		elif position.x - half_size - movement < 0:
+		elif position.x - pixel_bounds - movement < 0:
 			direction = 1
 			
 		position.x = position.x + (movement * direction)
