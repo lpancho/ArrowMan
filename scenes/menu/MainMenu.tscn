@@ -43,6 +43,7 @@ position = Vector2( 91.8096, 20.9772 )
 shape = SubResource( 2 )
 
 [node name="Endless" type="Label" parent="VBoxContainer"]
+visible = false
 margin_top = 47.0
 margin_right = 188.0
 margin_bottom = 90.0
@@ -60,9 +61,9 @@ shape = SubResource( 2 )
 
 [node name="Quit" type="Label" parent="VBoxContainer"]
 editor/display_folded = true
-margin_top = 94.0
+margin_top = 47.0
 margin_right = 188.0
-margin_bottom = 137.0
+margin_bottom = 90.0
 mouse_filter = 1
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )

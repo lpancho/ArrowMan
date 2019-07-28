@@ -14,6 +14,7 @@ func GenerateRandomPositionEnemy(container, enemyScene, groupName, count, minX, 
 	
 	for i in range(count):
 		var enemy = enemyScene.instance()
+		enemy.add_to_group("Fruit")
 		enemy.add_to_group(groupName)
 		enemy.speed = enemy.speed * GetDirectionValue(direction)
 		enemy.has_bounds = has_bounds
@@ -24,6 +25,7 @@ func GenerateRandomPositionEnemy(container, enemyScene, groupName, count, minX, 
 func GenerateHorizontalPositionEnemy(container, enemyScene, groupName, count, xPos, yPos, direction, has_bounds):
 	for i in range(count):
 		var enemy = enemyScene.instance()
+		enemy.add_to_group("Fruit")
 		enemy.add_to_group(groupName)
 		enemy.speed = enemy.speed * GetDirectionValue(direction)
 		enemy.has_bounds = has_bounds
@@ -34,6 +36,7 @@ func GenerateHorizontalPositionEnemy(container, enemyScene, groupName, count, xP
 func GenerateVerticalPositionEnemy(container, enemyScene, groupName, count, xPos, yPos, direction, has_bounds):
 	for i in range(count):
 		var enemy = enemyScene.instance()
+		enemy.add_to_group("Fruit")
 		enemy.add_to_group(groupName)
 		enemy.speed = enemy.speed * GetDirectionValue(direction)
 		enemy.has_bounds = has_bounds
@@ -45,6 +48,7 @@ func GenerateDiagonalPositionEnemy(container, enemyScene, groupName, count, xPos
 	for i in range(count):
 		
 		var enemy = enemyScene.instance()
+		enemy.add_to_group("Fruit")
 		enemy.add_to_group(groupName)
 		enemy.speed = enemy.speed * GetDirectionValue(direction)
 		enemy.has_bounds = has_bounds
@@ -62,6 +66,7 @@ func GenerateRandomPositionHorizontalMovementEnemy(container, enemyScene, groupN
 	for i in range(count):
 		
 		var enemy = enemyScene.instance()
+		enemy.add_to_group("Fruit")
 		enemy.add_to_group(groupName)
 		enemy.is_vertical = false
 		enemy.speed = enemy.speed * direction
@@ -75,6 +80,7 @@ func GenerateRandomPositionVerticalMovementEnemy(container, enemyScene, groupNam
 	for i in range(count):
 		
 		var enemy = enemyScene.instance()
+		enemy.add_to_group("Fruit")
 		enemy.add_to_group(groupName)
 		enemy.is_vertical = true
 		enemy.speed = enemy.speed * direction

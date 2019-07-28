@@ -88,7 +88,6 @@ func _on_ChallengePanel_start_game():
 func AddPlayerToScene():
 	player = playerScene.instance()
 	player.position = Vector2(player.position.x + 60, player.position.y + 250)
-	player.enable_process(false)
 	player.state = "PLAYING"
 	player.current_scene = current_scene
 	self.add_child(player)
@@ -104,6 +103,7 @@ func AddFruitSpawner(spawner_type):
 func on_create_random_fruit(spawner_type, spawner_position):
 	randomize()
 	var fruit = load(fruits_scn[randi() % possible_fruits_to_create]).instance()
+	fruit.add_to_group("Fruit")
 	fruit.add_to_group(fruit.name)
 	fruit.connect("hit_fruit", self, "on_hit_fruit")
 	fruit.position = spawner_position
@@ -127,3 +127,18 @@ func on_hit_fruit(fruit, area, is_alive, multiplier):
 		arrow.hit = arrow.hit + 1
 		fruit.queue_free()
 	pass 
+
+func _on_FruitTrap_area_entered(area):
+	var fruit_node = area.get_parent().get_parent()
+	if fruit_node.is_in_group("Fruit"):
+		player.queue_free()
+		player = null
+		
+		# remove fruits
+		for enemy in fruit_container.get_children():
+			enemy.queue_free()
+		for arrow in get_tree().get_nodes_in_group("Arrows"):
+			arrow.queue_free()
+		
+		$ChallengePanel.show_game_over_message("FRUITTRAP")
+	pass # Replace with function body.

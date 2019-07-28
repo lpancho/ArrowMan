@@ -89,20 +89,20 @@ func _process(delta):
 				enemy.queue_free()
 			
 			# show game over message
-			$ChallengePanel.show_game_over_message(false)
+			$ChallengePanel.show_game_over_message("NOARROWS")
 		
 		# GAME OVER - no arrows and no fruits left
-		elif player.state == "PLAYING" && fruit_container.get_child_count() == 0 && globals.get_arrows() == 0 && is_there_an_active_arrow:
-			# remove player
-			player.queue_free()
-			player = null
-			
-			# remove fruits
-			for enemy in fruit_container.get_children():
-				enemy.queue_free()
-			
-			# show game over message
-			$ChallengePanel.show_game_over_message(true)
+#		elif player.state == "PLAYING" && fruit_container.get_child_count() == 0 && globals.get_arrows() == 0 && is_there_an_active_arrow:
+#			# remove player
+#			player.queue_free()
+#			player = null
+#
+#			# remove fruits
+#			for enemy in fruit_container.get_children():
+#				enemy.queue_free()
+#
+#			# show game over message
+#			$ChallengePanel.show_game_over_message(true)
 	pass
 
 func _on_ChallengePanel_start_game():
@@ -157,7 +157,6 @@ func AddPlayerToScene(isGoldenArrowActivated):
 	player = playerScene.instance()
 	player.position = Vector2(player.position.x + 60, player.position.y + 250)
 	player.isGoldenArrowActivated = isGoldenArrowActivated
-	player.enable_process(false)
 	player.state = "PLAYING"
 	player.current_scene = current_scene
 	self.add_child(player)
@@ -252,4 +251,19 @@ func _on_Generate_button_up():
 func _on_Clear_button_up():
 	for fruit in enemy_generator.get_children():
 		fruit.queue_free()
+	pass # Replace with function body.
+
+func _on_FruitTrap_area_entered(area):
+	var fruit_node = area.get_parent().get_parent()
+	if fruit_node.is_in_group("Fruit"):
+		player.queue_free()
+		player = null
+		
+		# remove fruits
+		for enemy in fruit_container.get_children():
+			enemy.queue_free()
+		for arrow in get_tree().get_nodes_in_group("Arrows"):
+			arrow.queue_free()
+		
+		$ChallengePanel.show_game_over_message("FRUITTRAP")
 	pass # Replace with function body.

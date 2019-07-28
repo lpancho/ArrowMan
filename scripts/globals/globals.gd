@@ -1,6 +1,6 @@
 extends Node
 
-var activated_endless = true
+var activated_endless = false
 var arrows = 25 setget set_arrows, get_arrows
 var score = 0 	setget set_score, get_score
 var level = 1 	setget set_level, get_level

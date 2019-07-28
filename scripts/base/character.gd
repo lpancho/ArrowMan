@@ -86,7 +86,3 @@ func _input(event):
 				self.position.y = mouse_y
 			pass
 	pass
-	
-func enable_process(value):
-	set_process(value)
-	pass

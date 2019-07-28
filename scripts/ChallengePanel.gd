@@ -26,15 +26,17 @@ func show_current_challenge():
 		Vector2(0.1, 0.1), Vector2(1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
 
-func show_game_over_message(noArrowsAndFruits):
+func show_game_over_message(game_over_type):
 	$CanvasLayer/Sprite.scale = Vector2(0.1, 0.1)
 	
 	is_game_over = true
 	showing = true
-	if noArrowsAndFruits:
+	if game_over_type == "NOARROWSANDFRUITS":
 		messages = constants.game_over_message_no_arrows_and_fruits
-	else:
+	elif game_over_type == "NOARROWS":
 		messages = constants.game_over_message
+	elif game_over_type == "FRUITTRAP":
+		messages = constants.game_over_message # TODO: Create a message for FRUITTRAP game over
 	msg_index = 0
 	
 	$CanvasLayer/Sprite.visible = showing
@@ -83,8 +85,10 @@ func _input(event):
 					msg_index = msg_index + 1
 					$CanvasLayer/Sprite/Text.text = messages[msg_index]
 			elif is_game_over:
+				globals.set_arrows(constants.MAX_ARROWS)
 				get_tree().change_scene("res://scenes/menu/MainMenu.tscn")
 			elif is_end_game:
 				globals.activated_endless = true
+				globals.set_arrows(constants.MAX_ARROWS)
 				get_tree().change_scene("res://scenes/menu/MainMenu.tscn")
 	pass

@@ -118,7 +118,7 @@ var challenges_dict = {
 			"GoldenArrows": false,
 			"Messages": [
 				"You did a great job! Well done!\n\nThe feeling that you have successfully hit all 60 grapes with 25 arrows is awesome!\n\n\nFor you next challenge...\n\n\n\n\n\n[CLICK] to continue...",
-				"How are you going to feel when 80 kiwifruit start attacking you? Not literally but they are going in front of you.\n\nDon't let any kiwifruit leave the screen!\n\nGood luck!\n\n\n\n\n\n\n[CLICK] to start..."
+				"How are you going to feel when 80 kiwifruit start attacking you? Not literally but they are going in front of you.\n\nDon't let any kiwifruit leave the screen!\n\nGood luck!\n\n\n\n\n\n[CLICK] to start..."
 				],
 			"Enemies": [{
 				"Name": "Kiwi",
@@ -249,7 +249,7 @@ var fruits_dict = {
 }
 
 var game_over_message = [
-	"Dispite of not finishing the whole challenges does not mean that you are not qualified to be a great archer.\n\nPlay it again and prove that you are worthy to be one of us.\n\nHoping that you can finish all of the challenges.\n\n\n\n[CLICK] to go to Main Menu..."
+	"Dispite of not finishing the whole challenges does not mean that you are not qualified to be a great archer.\n\nPlay it again and prove that you are worthy to be one of us.\n\nHoping that you can finish all of the challenges.\n\n\n\n\n\n[CLICK] to go to Main Menu..."
 	]
 
 var game_over_message_no_arrows_and_fruits = [

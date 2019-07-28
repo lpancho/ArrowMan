@@ -11,7 +11,6 @@ func _ready():
 		$VBoxContainer/Endless/Area2D/CollisionShape2D.disabled = true
 	
 	$Hammond.visible = false
-#	get_tree().change_scene("res://ArrowMan.tscn")
 	pass # Replace with function body.
 
 func _on_Start_mouse_entered():
@@ -45,6 +44,9 @@ func _on_Quit_mouse_exited():
 	pass # Replace with function body.
 
 func _on_Start_Area2D_area_entered(area):
+	globals.set_arrows(constants.MAX_ARROWS)
+	globals.set_level(1)
+	globals.set_score(0)
 	get_tree().change_scene("res://scenes/stages/Stage.tscn")
 	pass # Replace with function body.
 
