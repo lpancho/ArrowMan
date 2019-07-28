@@ -251,6 +251,14 @@ var game_over_message = [
 	"Dispite of not finishing the whole challenges does not mean that you are not qualified to be a great archer.\n\nPlay it again and prove that you are worthy to be one of us.\n\nHoping that you can finish all of the challenges.\n\n\n\n[CLICK] to go to Main Menu..."
 	]
 
+var game_over_message_no_arrows_and_fruits = [
+	"You are great! You have hit all fruits with all of your arrows but sorry to say that you cannot proceed to the next stage.\n\nPlay it again and prove that you are worthy to be one of us.\n\nHoping that you can finish all of the challenges.\n\n\n\n[CLICK] to go to Main Menu..."
+	]
+
 var end_game_message = [
 	"After conquering all the challenges. I would like to congratulate you for being the great archer of all time!\nThis is not a joke but it is up to you if you'll going to accept it! hehe!\n\nI hope you have enjoyed each of the challenges.\n\nAs a token of appreciation. You may now select ENDLESS MODE in the game menu.\n\n\n\n[CLICK] to go to Main Menu..."
+	]
+
+var endless_mode_message = [
+	"Here you are in the Endless Mode! Where you can endlessly practice your archery skills!\n\nThis will be a random encounter of the fruits that you have hit before and each time you have hit them it will produce a honor points that you may use to unlock some characters and skills.\n\nTry to stop time to time in the main menu to check the unlockables.\n\nGoodluck to your endless battle! (sarcasm)\n[CLICK] to start..."
 	]

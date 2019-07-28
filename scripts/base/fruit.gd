@@ -2,6 +2,7 @@ extends Node2D
 
 var is_vertical = true
 var has_bounds = false
+var is_endless_mode = false
 var extended_bounds = null
 var speed = -100
 var height = 50
@@ -30,9 +31,15 @@ func _process(delta):
 		if (self.position.y - constants.BORDER_HEIGHT < 1 || self.position.y + height > get_viewport_rect().size.y):
 			speed *= -1
 	elif (self.position.y + height < 0):
-		self.position = Vector2(self.position.x, get_viewport_rect().size.y)
+		if is_endless_mode:
+			queue_free()
+		else:
+			self.position = Vector2(self.position.x, get_viewport_rect().size.y)
 	elif (self.position.y - height > get_viewport_rect().size.y):
-		 self.position = Vector2(self.position.x, 0)
+		if is_endless_mode:
+			queue_free()
+		else:
+			self.position = Vector2(self.position.x, 0)
 	pass
 
 func _on_Area2D_area_entered(area):
@@ -41,7 +48,7 @@ func _on_Area2D_area_entered(area):
 	if ("Arrow" in arrow.name && is_alive):
 		is_alive = false
 		globals.add_score((arrow.hit * get_score_multiplier()))
-		get_node("/root/ArrowMan/GUI").update_score()
+		get_node("../../GUI").update_score()
 		arrow.hit = arrow.hit + 1
 		queue_free()
 	pass # Replace with function body.

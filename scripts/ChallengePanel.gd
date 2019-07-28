@@ -11,6 +11,7 @@ var is_game_over = false
 var is_end_game = false
 
 func show_current_challenge():
+	$CanvasLayer/Sprite.scale = Vector2(0.1, 0.1)
 	showing = true
 	print("LEVEL: " + str(globals.get_level()))
 	var level = constants.challenges_dict["Stages"][globals.get_level() - 1]
@@ -25,10 +26,15 @@ func show_current_challenge():
 		Vector2(0.1, 0.1), Vector2(1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
 
-func show_game_over_message():
+func show_game_over_message(noArrowsAndFruits):
+	$CanvasLayer/Sprite.scale = Vector2(0.1, 0.1)
+	
 	is_game_over = true
 	showing = true
-	messages = constants.game_over_message
+	if noArrowsAndFruits:
+		messages = constants.game_over_message_no_arrows_and_fruits
+	else:
+		messages = constants.game_over_message
 	msg_index = 0
 	
 	$CanvasLayer/Sprite.visible = showing
@@ -39,9 +45,23 @@ func show_game_over_message():
 	tween.start()
 
 func show_end_game_message():
+	$CanvasLayer/Sprite.scale = Vector2(0.1, 0.1)
 	is_end_game = true
 	showing = true
 	messages = constants.end_game_message
+	msg_index = 0
+	
+	$CanvasLayer/Sprite.visible = showing
+	$CanvasLayer/Sprite/Text.text = messages[msg_index]
+	
+	tween.interpolate_property($CanvasLayer/Sprite, "scale", 
+		Vector2(0.1, 0.1), Vector2(1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.start()
+
+func show_endless_mode_message():
+	$CanvasLayer/Sprite.scale = Vector2(0.1, 0.1)
+	showing = true
+	messages = constants.endless_mode_message
 	msg_index = 0
 	
 	$CanvasLayer/Sprite.visible = showing

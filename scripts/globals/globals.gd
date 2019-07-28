@@ -1,9 +1,10 @@
 extends Node
 
 var activated_endless = true
-var arrows = 1 setget set_arrows, get_arrows
+var arrows = 10 setget set_arrows, get_arrows
 var score = 0 	setget set_score, get_score
 var level = 1 	setget set_level, get_level
+var wave = 1	setget set_wave, get_wave
 
 # SETGET
 func set_score(value):
@@ -15,6 +16,11 @@ func get_score():
 func set_level(value):
 	level = value
 func get_level():
+	return level
+
+func set_wave(value):
+	level = value
+func get_wave():
 	return level
 
 func set_arrows(value):

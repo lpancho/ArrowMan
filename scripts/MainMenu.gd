@@ -45,12 +45,15 @@ func _on_Quit_mouse_exited():
 	pass # Replace with function body.
 
 func _on_Start_Area2D_area_entered(area):
-	get_tree().change_scene("res://ArrowMan.tscn")
+	get_tree().change_scene("res://scenes/stages/Stage.tscn")
+	pass # Replace with function body.
+
+func _on_Endless_Area2D_area_entered(area):
+	get_tree().change_scene("res://scenes/stages/EndlessStage.tscn")
 	pass # Replace with function body.
 
 func _on_Quit_Area2D_area_entered(area):
 	get_tree().quit()
 	pass # Replace with function body.
-
 
 

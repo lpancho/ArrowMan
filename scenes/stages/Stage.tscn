@@ -1,20 +1,24 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/Stage.gd" type="Script" id=1]
-[ext_resource path="res://assets/green_background.png" type="Texture" id=2]
-[ext_resource path="res://scenes/gui/ChallengePanel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/gui/GUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/green_background.png" type="Texture" id=3]
+[ext_resource path="res://scenes/gui/ChallengePanel.tscn" type="PackedScene" id=4]
 
 [node name="Stage" type="Node2D"]
 script = ExtResource( 1 )
 environment = "DEV"
 
+[node name="GUI" parent="." instance=ExtResource( 2 )]
+margin_bottom = 0.0
+
 [node name="Background" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 centered = false
 
 [node name="Enemy_Container" type="Node" parent="."]
 
-[node name="ChallengePanel" parent="." instance=ExtResource( 3 )]
+[node name="ChallengePanel" parent="." instance=ExtResource( 4 )]
 
 [node name="Timer" type="Timer" parent="."]
 

@@ -35,3 +35,7 @@ func update_score():
 func update_stage():
 	$CanvasLayer/Stage.text = "Stage " + str(globals.get_level())
 	pass
+
+func update_endless_stage():
+	$CanvasLayer/Stage.text = "Wave " + str(globals.get_wave())
+	pass

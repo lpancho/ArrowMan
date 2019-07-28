@@ -6,14 +6,14 @@ var player = null
 
 # onready variables
 onready var enemy_container = $Enemy_Container
-
-# 
+var current_scene = "EndlessStage"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	playerScene = load("res://scenes/characters/Hammond.tscn")
+	$ChallengePanel.show_endless_mode_message()
 	set_process(false)
-	pass # Replace with function body.
+	pass
 
 func _process(delta):
 	
@@ -39,6 +39,11 @@ func _process(delta):
 			$ChallengePanel.show_game_over_message()
 	pass
 
+func _on_ChallengePanel_start_game():
+	set_process(true)
+	AddPlayerToScene(false)
+	pass
+
 # ADD PLAYER TO THE SCENE
 func AddPlayerToScene(isGoldenArrowActivated):
 	player = playerScene.instance()
@@ -46,6 +51,7 @@ func AddPlayerToScene(isGoldenArrowActivated):
 	player.isGoldenArrowActivated = isGoldenArrowActivated
 	player.enable_process(false)
 	player.state = "PLAYING"
+	player.current_scene = current_scene
 	self.add_child(player)
 	pass
 

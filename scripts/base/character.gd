@@ -2,6 +2,7 @@ extends Node2D
 
 # Make this as enum
 export var state = ""
+var current_scene = ""
 
 var speed = 80
 var isGoldenArrowActivated = false
@@ -66,7 +67,7 @@ func _input(event):
 			
 			arrowFiredCounter += 1
 			if (state != "MENU"):
-				get_node("/root/ArrowMan/GUI").remove_arrow()
+				get_tree().get_root().get_node(current_scene + "/GUI").remove_arrow()
 			
 			$Bow/AnimatedSprite.animation = "steady"
 		elif !event.is_pressed():
@@ -81,5 +82,4 @@ func _input(event):
 	
 func enable_process(value):
 	set_process(value)
-	print("player false")
 	pass
