@@ -31,15 +31,15 @@ func _process(delta):
 		if (self.position.y - constants.BORDER_HEIGHT < 1 || self.position.y + height > get_viewport_rect().size.y):
 			speed *= -1
 	elif (self.position.y + height < 0):
-		if is_endless_mode:
-			queue_free()
-		else:
-			self.position = Vector2(self.position.x, get_viewport_rect().size.y)
+#		if is_endless_mode:
+#			queue_free()
+#		else:
+		self.position = Vector2(self.position.x, get_viewport_rect().size.y)
 	elif (self.position.y - height > get_viewport_rect().size.y):
-		if is_endless_mode:
-			queue_free()
-		else:
-			self.position = Vector2(self.position.x, 0)
+#		if is_endless_mode:
+#			queue_free()
+#		else:
+		self.position = Vector2(self.position.x, 0)
 	pass
 
 func _on_Area2D_area_entered(area):
