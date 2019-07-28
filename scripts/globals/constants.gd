@@ -12,6 +12,7 @@ const GENERATE_RANDOM_POSITION_VERTICALMOVEMENT_ENEMY = "GenerateRandomPositionV
 const LAST_STAGE_ID = 6
 
 # STAGE DEFINED VALUES
+var MAX_ARROWS = 25
 var challenges_dict = {
 	"Stages": [{
 			"Id": 1,

@@ -48,6 +48,21 @@ text = "Stage 1"
 valign = 1
 uppercase = true
 
+[node name="FruitCount" type="Label" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 263.0
+margin_top = 25.0
+margin_right = 477.0
+margin_bottom = 59.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Fruit x 1"
+align = 2
+valign = 1
+uppercase = true
+
 [node name="ArrowBase" type="Sprite" parent="CanvasLayer"]
 visible = false
 position = Vector2( 690, 40 )

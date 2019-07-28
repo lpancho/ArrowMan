@@ -47,6 +47,7 @@ func _ready():
 	
 	playerScene = load("res://scenes/characters/Hammond.tscn")
 	
+	$GUI/CanvasLayer/FruitCount.visible = false
 	# Show Challenge Panel
 	$ChallengePanel.show_current_challenge()
 	set_process(false)
@@ -139,11 +140,15 @@ func _on_ChallengePanel_start_game():
 			generator["Position"]["RangeY"]["x"], generator["Position"]["RangeY"]["y"],
 			generator["ExtendedBounds"]["RangeY"]["x"], generator["ExtendedBounds"]["RangeY"]["y"],
 			generator["Direction"], generator["HasBounds"])
-			
+	
+	for fruit in fruit_container.get_children():
+		fruit.connect("hit_fruit", self, "on_hit_fruit")
+	
 	is_last_stage = current_stage["Id"] == constants.LAST_STAGE_ID
 	AddPlayerToScene(current_stage["GoldenArrows"])
-	get_tree().get_root().get_node(current_scene + "/GUI").update_stage()
-	get_tree().get_root().get_node(current_scene + "/GUI").draw_arrows(current_stage["GoldenArrows"])
+	globals.set_arrows(constants.MAX_ARROWS)
+	$GUI.update_stage()
+	$GUI.draw_arrows(current_stage["GoldenArrows"])
 	set_process(true)
 	pass
 
@@ -157,6 +162,16 @@ func AddPlayerToScene(isGoldenArrowActivated):
 	player.current_scene = current_scene
 	self.add_child(player)
 	pass
+
+func on_hit_fruit(fruit, area, is_alive, multiplier):
+	var arrow = area.get_parent()
+	if ("Arrow" in arrow.name && is_alive):
+		is_alive = false
+		arrow.hit = arrow.hit + 1
+		globals.add_score((arrow.hit * multiplier))
+		$GUI.update_score()
+		fruit.queue_free()
+	pass 
 
 # TESTING PURPOSES
 # Set environment = "TEST"

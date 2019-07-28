@@ -9,6 +9,8 @@ var height = 50
 var hits = 1
 var is_alive = true
 
+signal hit_fruit
+
 func _ready():
 	height = $Sprite.texture.get_size().y / 2
 	pass # Replace with function body.
@@ -31,27 +33,14 @@ func _process(delta):
 		if (self.position.y - constants.BORDER_HEIGHT < 1 || self.position.y + height > get_viewport_rect().size.y):
 			speed *= -1
 	elif (self.position.y + height < 0):
-#		if is_endless_mode:
-#			queue_free()
-#		else:
 		self.position = Vector2(self.position.x, get_viewport_rect().size.y)
 	elif (self.position.y - height > get_viewport_rect().size.y):
-#		if is_endless_mode:
-#			queue_free()
-#		else:
 		self.position = Vector2(self.position.x, 0)
 	pass
 
 func _on_Area2D_area_entered(area):
-	
-	var arrow = area.get_parent()
-	if ("Arrow" in arrow.name && is_alive):
-		is_alive = false
-		globals.add_score((arrow.hit * get_score_multiplier()))
-		get_node("../../GUI").update_score()
-		arrow.hit = arrow.hit + 1
-		queue_free()
-	pass # Replace with function body.
+	emit_signal("hit_fruit", self, area, is_alive, get_score_multiplier())
+	pass
 
 func get_modified_size():
 	return $Sprite.texture.get_size().y

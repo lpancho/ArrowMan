@@ -21,11 +21,6 @@ func remove_arrow():
 	var currentArrow = globals.get_arrows() - 1
 	$CanvasLayer/ArrowContainer.get_child(currentArrow).queue_free()
 	globals.set_arrows(currentArrow)
-	
-	if (currentArrow == 0):
-		# Game over 
-#		draw_arrows()
-		pass
 	pass
 
 func update_score():
@@ -38,4 +33,12 @@ func update_stage():
 
 func update_endless_stage():
 	$CanvasLayer/Stage.text = "Wave " + str(globals.get_wave())
+	pass
+
+func update_endless_medal():
+	$CanvasLayer/Score.text = "Medal: " + str(globals.get_medal())
+	pass
+
+func update_endless_fruitcount(count):
+	$CanvasLayer/FruitCount.text = "Fruit x " + str(count)
 	pass
