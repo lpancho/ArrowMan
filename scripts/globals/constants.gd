@@ -260,5 +260,6 @@ var end_game_message = [
 	]
 
 var endless_mode_message = [
-	"Here you are in the Endless Mode! Where you can endlessly practice your archery skills!\n\nThis will be a random encounter of the fruits that you have hit before and each time you have hit them it will produce a honor points that you may use to unlock some characters and skills.\n\nTry to stop time to time in the main menu to check the unlockables.\n\nGoodluck to your endless battle! (sarcasm)\n[CLICK] to start..."
+	"Here you are in the Endless Mode! Where you can endlessly practice your archery skills!\n\nThis will be a random encounter of the fruits that you have hit before and each time you have hit them it will produce a honor points that you may use to unlock some characters and skills.\n\nTry to stop time to time in the main menu to check the unlockables.\n\n\n[CLICK] to continue...",
+	"As the level progress, there will be more and more fruits to hit. Also there will be a time that you need to upgrade your arrow or change character in order to get more points.\n\nOne thing to remember is that, you must not collied with any of the fruit in the screen.\n\nGoodluck to your endless battle! (sarcasm)\n\n\n\n[CLICK] to start..."
 	]

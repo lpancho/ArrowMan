@@ -44,30 +44,37 @@ func _input(event):
 				&& $Bow/AnimatedSprite.frame == MAX_PULL_FRAME
 				&& globals.get_arrows() != 0):
 			
-			var isDivisibleBy5 = (arrowFiredCounter + 1) % 5 == 0
-			if (isGoldenArrowActivated && isDivisibleBy5):
-				randomize()
-				var arrow = goldenArrowObj.instance()
-				arrow.position = self.bow.global_position
-				self.get_parent().add_child(arrow)
-				
-				for i in range(8):
-					arrow = goldenArrowObj.instance()
-					arrow.position = Vector2(self.bow.global_position.x, rand_range(100, 550))
+			if current_scene == "Stage":
+				var isDivisibleBy5 = (arrowFiredCounter + 1) % 5 == 0
+				if (isGoldenArrowActivated && isDivisibleBy5):
+					randomize()
+					var arrow = goldenArrowObj.instance()
+					arrow.position = self.bow.global_position
 					self.get_parent().add_child(arrow)
-			else:
+					
+					for i in range(8):
+						arrow = goldenArrowObj.instance()
+						arrow.position = Vector2(self.bow.global_position.x, rand_range(100, 550))
+						self.get_parent().add_child(arrow)
+				else:
+					var arrow = arrowObj.instance()
+					arrow.add_to_group("Arrows")
+					arrow.position = self.bow.global_position
+					self.get_parent().add_child(arrow)
+				
+				arrowFiredCounter += 1
+				if (state != "MENU"):
+					get_tree().get_root().get_node(current_scene + "/GUI").remove_arrow()
+			elif current_scene == "EndlessStage":
 				var arrow = arrowObj.instance()
 				arrow.add_to_group("Arrows")
 				arrow.position = self.bow.global_position
 				self.get_parent().add_child(arrow)
-				
-				arrow = arrowObj.instance()
+			elif state == "MENU":
+				var arrow = arrowObj.instance()
+				arrow.add_to_group("Arrows")
 				arrow.position = self.bow.global_position
 				self.get_parent().add_child(arrow)
-			
-			arrowFiredCounter += 1
-			if (state != "MENU"):
-				get_tree().get_root().get_node(current_scene + "/GUI").remove_arrow()
 			
 			$Bow/AnimatedSprite.animation = "steady"
 		elif !event.is_pressed():
