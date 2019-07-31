@@ -1,61 +1,81 @@
 extends Control
 
-# Called when the node enters the scene tree for the first time.
+onready var stage_mode = 	$VBoxContainer/StageMode
+onready var endless_mode = 	$VBoxContainer/EndlessMode
+onready var unlockables = 	$VBoxContainer/Unlockables
+onready var quit = 			$VBoxContainer/Quit
+onready var hammond = 		$Hammond
+
+var stage_mode_scn = 		"res://scenes/stages/Stage.tscn"
+var endless_mode_scn = 		"res://scenes/stages/EndlessStage.tscn"
+
+enum SELECTIONS { STAGE_MODE, ENDLESS_MODE, UNLOCKABLES, QUIT }
+
 func _ready():
 	
-	if (globals.activated_endless):
-		$VBoxContainer/Endless.visible = true
-		$VBoxContainer/Endless/Area2D/CollisionShape2D.disabled = false
-	else:
-		$VBoxContainer/Endless.visible = false
-		$VBoxContainer/Endless/Area2D/CollisionShape2D.disabled = true
+	# mouse_entered - show character hammond
+	stage_mode.connect("mouse_entered", self, "_on_Label_mouse_entered", [Vector2(100, 350)])
+	endless_mode.connect("mouse_entered", self, "_on_Label_mouse_entered", [Vector2(100, 415)])
+	unlockables.connect("mouse_entered", self, "_on_Label_mouse_entered", [Vector2(100, 475)])
+	quit.connect("mouse_entered", self, "_on_Label_mouse_entered", [Vector2(100, 530)])
 	
-	$Hammond.visible = false
-	pass # Replace with function body.
-
-func _on_Start_mouse_entered():
-	$Hammond.visible = true
-	$Hammond.position = Vector2(350, 350)
-	pass # Replace with function body.
-
-func _on_Start_mouse_exited():
-	$Hammond.visible = false
-	pass # Replace with function body.
-
-func _on_Endless_mouse_entered():
-	$Hammond.visible = true
-	$Hammond.position = Vector2(350, 400)
-	pass # Replace with function body.
-
-func _on_Endless_mouse_exited():
-	$Hammond.visible = false
-	pass # Replace with function body.
-
-func _on_Quit_mouse_entered():
-	$Hammond.visible = true
+	# area_enterd - for the selection of the player
+	stage_mode.get_node("Area2D").connect("area_entered", self, "_on_Area2D_area_entered", [SELECTIONS.STAGE_MODE])
+	endless_mode.get_node("Area2D").connect("area_entered", self, "_on_Area2D_area_entered", [SELECTIONS.ENDLESS_MODE])
+	unlockables.get_node("Area2D").connect("area_entered", self, "_on_Area2D_area_entered", [SELECTIONS.UNLOCKABLES])
+	quit.get_node("Area2D").connect("area_entered", self, "_on_Area2D_area_entered", [SELECTIONS.QUIT])
+	
 	if (globals.activated_endless):
-		$Hammond.position = Vector2(350, 450)
-	else:
-		$Hammond.position = Vector2(350, 400)
+		endless_mode.get_node("Unlock").visible = false
+		unlockables.get_node("Unlock").visible = false
+		
+		# change alpha value to 1 - remove transparency
+		endless_mode.set("custom_colors/font_color", Color(0, 0, 0, 1))
+		unlockables.set("custom_colors/font_color", Color(0, 0, 0, 1))
+	
+	hammond.visible = false
 	pass # Replace with function body.
 
-func _on_Quit_mouse_exited():
-	$Hammond.visible = false
+func _input(event):
+	if event is InputEventMouseButton:
+		print(event.position)
+	pass
+
+func _on_Label_mouse_entered(position):
+	hammond.visible = true
+	hammond.position = position
 	pass # Replace with function body.
 
-func _on_Start_Area2D_area_entered(area):
-	globals.set_arrows(constants.MAX_ARROWS)
-	globals.set_level(1)
-	globals.set_score(0)
-	get_tree().change_scene("res://scenes/stages/Stage.tscn")
+func _on_Label_mouse_exited():
+	hammond.visible = false
 	pass # Replace with function body.
 
-func _on_Endless_Area2D_area_entered(area):
-	get_tree().change_scene("res://scenes/stages/EndlessStage.tscn")
+func _on_Area2D_area_entered(area, selection):
+	match selection:
+		SELECTIONS.STAGE_MODE:
+			globals.set_arrows(constants.MAX_ARROWS)
+			globals.set_level(1)
+			globals.set_score(0)
+			get_tree().change_scene(stage_mode_scn)
+		SELECTIONS.ENDLESS_MODE:
+			if globals.activated_endless:
+				get_tree().change_scene(endless_mode_scn)
+		SELECTIONS.UNLOCKABLES:
+			if globals.activated_endless:
+				get_tree().change_scene(endless_mode_scn)
+			pass
+		SELECTIONS.QUIT:
+			get_tree().quit()
 	pass # Replace with function body.
 
-func _on_Quit_Area2D_area_entered(area):
-	get_tree().quit()
-	pass # Replace with function body.
+
+
+
+
+
+
+
+
+
 
 

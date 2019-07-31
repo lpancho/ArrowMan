@@ -22,69 +22,111 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 420.931
-margin_top = 349.181
-margin_right = 608.931
-margin_bottom = 486.181
+margin_left = 672.267
+margin_top = 341.644
+margin_right = 952.267
+margin_bottom = 579.644
+custom_constants/separation = 17
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="Start" type="Label" parent="VBoxContainer"]
-margin_right = 188.0
+[node name="StageMode" type="Label" parent="VBoxContainer"]
+editor/display_folded = true
+margin_right = 280.0
 margin_bottom = 43.0
 mouse_filter = 1
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "START"
+text = "Stage Mode"
 align = 1
 
-[node name="Area2D" type="Area2D" parent="VBoxContainer/Start"]
+[node name="Area2D" type="Area2D" parent="VBoxContainer/StageMode"]
+editor/display_folded = true
+visible = false
 position = Vector2( 91.8096, 20.9772 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VBoxContainer/Start/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VBoxContainer/StageMode/Area2D"]
 shape = SubResource( 2 )
 
-[node name="Endless" type="Label" parent="VBoxContainer"]
-visible = false
-margin_top = 47.0
-margin_right = 188.0
-margin_bottom = 90.0
+[node name="EndlessMode" type="Label" parent="VBoxContainer"]
+editor/display_folded = true
+margin_top = 60.0
+margin_right = 280.0
+margin_bottom = 103.0
 mouse_filter = 1
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "ENDLESS"
+custom_colors/font_color = Color( 0, 0, 0, 0 )
+text = "Endless Mode"
 align = 1
 
-[node name="Area2D" type="Area2D" parent="VBoxContainer/Endless"]
+[node name="Area2D" type="Area2D" parent="VBoxContainer/EndlessMode"]
+editor/display_folded = true
+visible = false
 position = Vector2( 92.2998, 20.6734 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VBoxContainer/Endless/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VBoxContainer/EndlessMode/Area2D"]
 shape = SubResource( 2 )
+
+[node name="Unlock" type="Label" parent="VBoxContainer/EndlessMode"]
+margin_left = 15.6376
+margin_top = 37.5558
+margin_right = 253.638
+margin_bottom = 51.5558
+text = "(Clear Stage Mode to unlock!)"
+align = 1
+valign = 2
+
+[node name="Unlockables" type="Label" parent="VBoxContainer"]
+editor/display_folded = true
+margin_top = 120.0
+margin_right = 280.0
+margin_bottom = 163.0
+mouse_filter = 1
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 0 )
+text = "Unlockables"
+align = 1
+
+[node name="Area2D" type="Area2D" parent="VBoxContainer/Unlockables"]
+editor/display_folded = true
+visible = false
+position = Vector2( 92.2998, 20.6734 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VBoxContainer/Unlockables/Area2D"]
+shape = SubResource( 2 )
+
+[node name="Unlock" type="Label" parent="VBoxContainer/Unlockables"]
+margin_left = 17.1078
+margin_top = 39.026
+margin_right = 255.108
+margin_bottom = 53.026
+text = "(Clear Stage Mode to unlock!)"
+align = 1
+valign = 1
 
 [node name="Quit" type="Label" parent="VBoxContainer"]
 editor/display_folded = true
-margin_top = 47.0
-margin_right = 188.0
-margin_bottom = 90.0
+margin_top = 180.0
+margin_right = 280.0
+margin_bottom = 223.0
 mouse_filter = 1
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "QUIT"
+text = "Quit"
 align = 1
 
 [node name="Area2D" type="Area2D" parent="VBoxContainer/Quit"]
+visible = false
 position = Vector2( 93.6823, 16.4569 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VBoxContainer/Quit/Area2D"]
 shape = SubResource( 2 )
 
 [node name="Hammond" parent="." instance=ExtResource( 4 )]
-position = Vector2( 356.418, 391.787 )
+position = Vector2( 137.458, 360.054 )
 state = "MENU"
-[connection signal="mouse_entered" from="VBoxContainer/Start" to="." method="_on_Start_mouse_entered"]
-[connection signal="mouse_exited" from="VBoxContainer/Start" to="." method="_on_Start_mouse_exited"]
-[connection signal="area_entered" from="VBoxContainer/Start/Area2D" to="." method="_on_Start_Area2D_area_entered"]
-[connection signal="mouse_entered" from="VBoxContainer/Endless" to="." method="_on_Endless_mouse_entered"]
-[connection signal="mouse_exited" from="VBoxContainer/Endless" to="." method="_on_Endless_mouse_exited"]
-[connection signal="area_entered" from="VBoxContainer/Endless/Area2D" to="." method="_on_Endless_Area2D_area_entered"]
-[connection signal="mouse_entered" from="VBoxContainer/Quit" to="." method="_on_Quit_mouse_entered"]
-[connection signal="mouse_exited" from="VBoxContainer/Quit" to="." method="_on_Quit_mouse_exited"]
-[connection signal="area_entered" from="VBoxContainer/Quit/Area2D" to="." method="_on_Quit_Area2D_area_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/StageMode" to="." method="_on_Label_mouse_exited"]
+[connection signal="mouse_exited" from="VBoxContainer/EndlessMode" to="." method="_on_Label_mouse_exited"]
+[connection signal="mouse_exited" from="VBoxContainer/Unlockables" to="." method="_on_Label_mouse_exited"]
+[connection signal="mouse_exited" from="VBoxContainer/Quit" to="." method="_on_Label_mouse_exited"]
